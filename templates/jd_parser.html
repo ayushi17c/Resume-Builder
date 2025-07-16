@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>JD Parser</h2>
+<form method="POST">
+    <textarea name="jd_text" rows="10" cols="80" placeholder="Paste job description here..."></textarea><br>
+    <button type="submit">Extract Keywords</button>
+</form>
+
+{% if keywords %}
+    <h4>Extracted Keywords:</h4>
+    <ul>
+        {% for kw in keywords %}
+            <li>{{ kw }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+

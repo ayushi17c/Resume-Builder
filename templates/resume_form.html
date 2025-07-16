@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Resume Form</h2>
+<form method="POST">
+    <input name="name" placeholder="Full Name" required><br>
+    <input name="email" placeholder="Email" required><br>
+    <input name="phone" placeholder="Phone Number" required><br>
+    <textarea name="summary" placeholder="Professional Summary" rows="4" cols="50"></textarea><br>
+    <textarea name="skills" placeholder="Skills (comma-separated)" rows="2" cols="50"></textarea><br>
+    <textarea name="experience" placeholder="Work Experience" rows="4" cols="50"></textarea><br>
+    <textarea name="education" placeholder="Education" rows="4" cols="50"></textarea><br>
+    <button type="submit">Save & Preview</button>
+</form>
+{% endblock %}

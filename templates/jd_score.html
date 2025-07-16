@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Resume vs JD Score</h2>
+<form method="POST">
+    <textarea name="jd_text" rows="10" cols="80" placeholder="Paste job description here..."></textarea><br>
+    <button type="submit">Score My Resume</button>
+</form>
+
+{% if score is not none %}
+    <h4>Match Score: {{ score }}%</h4>
+    <h5>✅ Matched Keywords:</h5>
+    <ul>
+        {% for word in matched %}
+        <li>{{ word }}</li>
+        {% endfor %}
+    </ul>
+
+    <h5>❌ Missing Keywords:</h5>
+    <ul>
+        {% for word in missed %}
+        <li>{{ word }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

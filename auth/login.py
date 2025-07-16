@@ -1,0 +1,21 @@
+from flask import Blueprint, request, render_template, redirect, url_for, flash
+from flask_login import login_user
+from extensions import mongo
+
+from models.user import User
+import bcrypt
+
+login_bp = Blueprint("login_bp", __name__)
+
+@login_bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password'].encode('utf-8')
+        user_data = mongo.db.users.find_one({'email': email})
+        if user_data and bcrypt.checkpw(password, user_data['password']):
+            login_user(User(user_data))
+            return redirect(url_for('dash_bp.dashboard'))
+        else:
+            flash("Invalid credentials")
+    return render_template('login.html')

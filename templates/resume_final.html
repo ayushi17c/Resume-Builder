@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { font-size: 24px; border-bottom: 1px solid #ccc; }
+        section { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>{{ data.name }}</h1>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Phone:</strong> {{ data.phone }}</p>
+
+    <section>
+        <h2>Professional Summary</h2>
+        <p>{{ data.summary }}</p>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <p>{{ data.skills }}</p>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+        <p>{{ data.experience }}</p>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <p>{{ data.education }}</p>
+    </section>
+</body>
+</html>

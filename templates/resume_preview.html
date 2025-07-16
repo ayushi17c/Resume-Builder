@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Resume Preview</h2>
+<div>
+    <p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Phone:</strong> {{ data.phone }}</p>
+    <p><strong>Summary:</strong> {{ data.summary }}</p>
+    <p><strong>Skills:</strong> {{ data.skills }}</p>
+    <p><strong>Experience:</strong> {{ data.experience }}</p>
+    <p><strong>Education:</strong> {{ data.education }}</p>
+</div>
+<a href="{{ url_for('resume_bp.download_resume') }}">Download as PDF</a>
+{% endblock %}

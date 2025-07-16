@@ -1,0 +1,18 @@
+Flask==2.3.2
+Flask-Login==0.6.3
+Flask-PyMongo==2.3.0
+pymongo==4.5.0
+bcrypt==4.0.1
+
+# PDF generation using wkhtmltopdf
+pdfkit==1.0.0
+
+# JD parsing and keyword extraction
+spacy==3.7.2
+pydantic==1.10.13 
+
+# Resume analysis utilities
+nltk==3.8.1
+
+# (Optional) for managing secrets/config
+python-dotenv==1.0.1
