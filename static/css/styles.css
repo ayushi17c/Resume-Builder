@@ -1,3 +1,5 @@
+/* Final, Consolidated styles.css */
+
 /* Reset & base styles */
 *,
 *::before,
@@ -10,7 +12,7 @@
 html {
     font-size: 16px;
     font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(120deg, #e3f2fd 0%, #fffde7 100%);
+    background: linear-gradient(120deg, #88bfe4 0%, #fffde7 100%);
     min-height: 100%;
 }
 
@@ -25,67 +27,69 @@ body {
 /* Navigation bar */
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #38598b 0%, #38598b 100%);
+    justify-content: space-between;
+    background: linear-gradient(90deg, #031735 0%, #38598b 100%);
     color: white;
-    padding: 18px 40px;
-    font-size: 17px;
-    height: 120px;
+    padding: 1.5rem 2.5rem;
+    font-size: 1.0625rem;
+    height: auto;
     box-shadow: 0 6px 24px rgba(13, 71, 161, 0.12);
     border-radius: 0;
-    position: sticky;
-    top: 0;
     z-index: 100;
     transition: box-shadow 0.3s;
 }
 
 .logo {
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 900;
     letter-spacing: 2px;
     color: #fdffcd;
     text-shadow: 0 2px 8px #ffd54f44;
     transition: color 0.3s;
     font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    margin-right: 2.5rem;
 }
 
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 24px;
-    transition: color 0.3s, text-shadow 0.3s, background 0.3s;
-    padding: 12px 26px;
-    border-radius: 8px;
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
-}
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 12px;
-    width: 100%;
+    gap: 1.25rem;
 }
 
 .main-links {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
+}
+
+.navbar-spacer {
+    display: none;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s, background 0.3s;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
 }
 
 .logout-link {
-    margin-left: auto;
     background: #ffd54f22;
-    color: #1a237e;
+    color: #ffd54f;
     font-weight: 700;
     border: 1px solid #ffd54f44;
-    padding: 8px 18px;
+    padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: background 0.3s, color 0.3s;
 }
 
-.logout-link:hover, .logout-link:focus {
+.logout-link:hover,
+.logout-link:focus {
     background: #ffd54f;
     color: #0d47a1;
 }
@@ -94,7 +98,8 @@ body {
     content: '';
     display: block;
     position: absolute;
-    left: 0; bottom: 0;
+    left: 0;
+    bottom: 0;
     width: 100%;
     height: 3px;
     background: linear-gradient(90deg, #ffd54f 0%, #fffde7 100%);
@@ -115,23 +120,111 @@ body {
     transform: scaleX(1);
 }
 
-/* Container */
+/* Core Layout & Home Page Specifics */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 850px;
+    margin: 3rem auto;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 0 20px;
+    color: #1a237e;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-section .cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #1565c0 0%, #0d47a1 100%);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-section .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(21, 101, 192, 0.2);
+}
+
+.features-card-container {
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1.125rem;
+    box-shadow: 0 8px 32px rgba(21, 101, 192, 0.10);
+    backdrop-filter: blur(2px);
+    width: 100%;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: transparent;
+    padding: 30px;
+    box-shadow: none;
+    text-align: center;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card .icon {
+    font-size: 40px;
+    color: #1565c0;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    color: #1a237e;
+    margin-bottom: 10px;
+}
+
+/* Generic .container for other pages (like login, signup) */
 .container {
     max-width: 900px;
-    margin: 48px auto;
-    padding: 40px 32px;
-    background: rgba(255,255,255,0.98);
-    border-radius: 18px;
+    margin: 3rem auto;
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1.125rem;
     box-shadow: 0 8px 32px rgba(21, 101, 192, 0.10);
-    transition: box-shadow 0.3s;
     backdrop-filter: blur(2px);
+    transition: box-shadow 0.3s;
 }
 
 /* Headings */
 h1, h2 {
     color: #1a237e;
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
     font-family: 'Montserrat', 'Segoe UI', sans-serif;
@@ -139,7 +232,7 @@ h1, h2 {
 
 h1 {
     font-size: 2.5rem;
-    margin-top: 12px;
+    margin-top: 0.75rem;
 }
 
 h2 {
@@ -150,7 +243,7 @@ h2 {
 p {
     text-align: center;
     color: #555;
-    margin-bottom: 18px;
+    margin-bottom: 1.125rem;
     font-size: 1.08rem;
 }
 
@@ -158,16 +251,16 @@ p {
 form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    margin-top: 24px;
+    gap: 1.125rem;
+    margin-top: 1.5rem;
     align-items: stretch;
 }
 
 input, textarea, select {
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
     font-size: 1rem;
     border: 1.5px solid #b3c6e6;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     transition: border-color 0.3s, box-shadow 0.3s;
     background: #f7f9fc;
     font-family: inherit;
@@ -183,18 +276,18 @@ input:focus, textarea:focus, select:focus {
 label {
     font-weight: 500;
     color: #1a237e;
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem;
     font-size: 1rem;
 }
 
 /* Buttons */
 button {
-    padding: 14px 0;
+    padding: 0.875rem 0;
     background: linear-gradient(90deg, #1565c0 0%, #0d47a1 100%);
     color: white;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     cursor: pointer;
     font-size: 1.08rem;
     transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
@@ -202,27 +295,28 @@ button {
     letter-spacing: 0.5px;
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
     background: linear-gradient(90deg, #ffd54f 0%, #1565c0 100%);
     color: #1a237e;
     box-shadow: 0 6px 24px rgba(21, 101, 192, 0.18);
     outline: none;
-    transform: translateY(-2px) scale(1.03);
+    transform: translateY(-2px) scale(1.01);
 }
 
 /* Bullet list */
 ul {
-    margin-top: 24px;
-    padding-left: 44px;
+    margin-top: 1.5rem;
+    padding-left: 2.75rem;
     color: #333;
     line-height: 1.8;
     font-size: 1.05rem;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     position: relative;
-    padding-left: 12px;
+    padding-left: 0.75rem;
 }
 
 li::before {
@@ -237,7 +331,7 @@ li::before {
 /* Flash messages */
 .flashes {
     list-style: none;
-    margin: 18px auto;
+    margin: 1.125rem auto;
     padding: 0;
     max-width: 600px;
     text-align: center;
@@ -246,9 +340,9 @@ li::before {
 .flashes li {
     background: #e3f2fd;
     color: #1565c0;
-    border-radius: 8px;
-    padding: 10px 0;
-    margin-bottom: 8px;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0;
+    margin-bottom: 0.5rem;
     font-weight: 500;
     box-shadow: 0 2px 8px rgba(21, 101, 192, 0.08);
 }
@@ -257,48 +351,56 @@ li::before {
 hr {
     border: none;
     border-top: 2px solid #e3f2fd;
-    margin: 32px 0;
+    margin: 2rem 0;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
     .container {
         max-width: 98vw;
-        padding: 24px 8px;
+        padding: 1.5rem 0.5rem;
     }
 }
 
 @media (max-width: 600px) {
     .container {
         width: 99vw;
-        padding: 12px 2vw;
-        margin: 16px auto;
-        border-radius: 10px;
+        padding: 0.75rem 2vw;
+        margin: 1rem auto;
+        border-radius: 0.625rem;
     }
 
     .navbar {
         flex-direction: column;
         height: auto;
-        padding: 12px 10px;
-        border-radius: 0 0 10px 10px;
+        padding: 0.75rem 0.625rem;
+        border-radius: 0 0 0.625rem 0.625rem;
     }
 
     .navbar a {
-        margin: 8px 0 0 0;
+        margin: 0.5rem 0 0 0;
         width: 100%;
         text-align: left;
-        padding: 10px 12px;
+        padding: 0.625rem 0.75rem;
         font-size: 1rem;
     }
 
     .logo {
-        font-size: 20px;
-        margin-bottom: 8px;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
         text-align: center;
+        margin-right: 0;
     }
 
-    main {
-        padding: 8px;
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .main-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
     }
 
     h1 {
@@ -343,9 +445,107 @@ hr {
 }
 
 /* Utility spacing */
-.mt-2 { margin-top: 12px; }
-.mt-3 { margin-top: 24px; }
-.mb-2 { margin-bottom: 12px; }
-.mb-3 { margin-bottom: 24px; }
+.mt-2 { margin-top: 0.75rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-2 { margin-bottom: 0.75rem; }
+.mb-3 { margin-bottom: 1.5rem; }
 
-/* End of
+/* Resume Preview & Final Styles */
+.resume-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.resume-container .header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resume-container .header h1 {
+    font-size: 2.2rem;
+    color: #1a237e;
+    font-weight: 700;
+}
+
+.resume-container .header p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0 0;
+}
+
+.resume-container .section {
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.resume-container .section h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    color: #1565c0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #1565c0;
+    display: inline-block;
+}
+
+.resume-container .section p {
+    text-align: left;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.resume-container .skills-list {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.resume-container .skills-list li {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.download-btn {
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 12px 30px;
+    background: linear-gradient(90deg, #1565c0 0%, #0d47a1 100%);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(21, 101, 192, 0.2);
+}
+
+.form-container {
+    max-width: 400px; /* A standard, professional width */
+    margin: 50px auto; /* Centers the container and adds vertical spacing */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(21, 101, 192, 0.10);
+    text-align: center;
+}
+.form-container input,
+.form-container button {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}

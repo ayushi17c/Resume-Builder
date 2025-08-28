@@ -2,13 +2,101 @@
 {% block content %}
 <h2>Resume Form</h2>
 <form method="POST">
-    <input name="name" placeholder="Full Name" required><br>
-    <input name="email" placeholder="Email" required><br>
-    <input name="phone" placeholder="Phone Number" required><br>
-    <textarea name="summary" placeholder="Professional Summary" rows="4" cols="50"></textarea><br>
-    <textarea name="skills" placeholder="Skills (comma-separated)" rows="2" cols="50"></textarea><br>
-    <textarea name="experience" placeholder="Work Experience" rows="4" cols="50"></textarea><br>
-    <textarea name="education" placeholder="Education" rows="4" cols="50"></textarea><br>
+    <div class="form-section">
+        <h3>Personal Information</h3>
+        <input name="name" placeholder="Full Name" required><br>
+        <input name="email" placeholder="Email" required><br>
+        <input name="phone" placeholder="Phone Number" required><br>
+        <input name="linkedin" placeholder="LinkedIn URL (Optional)"><br>
+        <input name="github" placeholder="GitHub URL (Optional)"><br>
+        <input name="leetcode" placeholder="LeetCode URL (Optional)"><br>
+        <textarea name="summary" placeholder="Professional Summary" rows="4"></textarea>
+    </div>
+
+    <div class="form-section">
+        <h3>Education</h3>
+        <input name="degree" placeholder="Degree (e.g., Bachelor of Science)" required><br>
+        <input name="university" placeholder="University Name" required><br>
+        <input name="graduation_date" placeholder="Graduation Date (e.g., May 2025)" required><br>
+    </div>
+
+    <div class="form-section">
+        <h3>Skills (Categorize your skills)</h3>
+        <textarea name="technical_skills" placeholder="Technical Skills (e.g., Python, Flask, MongoDB)" rows="2"></textarea>
+        <textarea name="soft_skills" placeholder="Soft Skills (e.g., Teamwork, Communication, Problem-Solving)" rows="2"></textarea>
+    </div>
+    
+    <div class="form-section" id="certifications-section">
+        <h3>Certifications</h3>
+        <div class="certification-entry">
+            <input name="certification_title" placeholder="Certification Title (Optional)"><br>
+            <input name="certification_org" placeholder="Issuing Organization (Optional)"><br>
+        </div>
+        <button type="button" class="add-btn" onclick="addCertification()">Add Another Certification</button>
+    </div>
+
+    <div class="form-section" id="experience-section">
+        <h3>Work Experience</h3>
+        <div class="experience-entry">
+            <input name="job_title" placeholder="Job Title (Optional)"><br>
+            <input name="company" placeholder="Company (Optional)"><br>
+            <input name="experience_dates" placeholder="Dates (e.g., Jan 2023 - Present) (Optional)"><br>
+            <textarea name="experience_description" placeholder="Description (Optional)" rows="3"></textarea>
+        </div>
+        <button type="button" class="add-btn" onclick="addExperience()">Add Another Job</button>
+    </div>
+
+    <div class="form-section" id="projects-section">
+        <h3>Projects</h3>
+        <div class="project-entry">
+            <input name="project_title" placeholder="Project Title (Optional)"><br>
+            <input name="project_tech" placeholder="Tech Stack (e.g., Flask, MongoDB)" rows="1"><br>
+            <textarea name="project_description" placeholder="Project Description (Optional)" rows="3"></textarea>
+        </div>
+        <button type="button" class="add-btn" onclick="addProject()">Add Another Project</button>
+    </div>
+
     <button type="submit">Save & Preview</button>
 </form>
+
+<script>
+    function addExperience() {
+        const section = document.getElementById('experience-section');
+        const newEntry = document.createElement('div');
+        newEntry.classList.add('experience-entry');
+        newEntry.innerHTML = `
+            <hr><br>
+            <input name="job_title" placeholder="Job Title (Optional)"><br>
+            <input name="company" placeholder="Company (Optional)"><br>
+            <input name="experience_dates" placeholder="Dates (e.g., Jan 2023 - Present) (Optional)"><br>
+            <textarea name="experience_description" placeholder="Description (Optional)" rows="3"></textarea>
+        `;
+        section.insertBefore(newEntry, section.querySelector('.add-btn'));
+    }
+
+    function addProject() {
+        const section = document.getElementById('projects-section');
+        const newEntry = document.createElement('div');
+        newEntry.classList.add('project-entry');
+        newEntry.innerHTML = `
+            <hr><br>
+            <input name="project_title" placeholder="Project Title (Optional)"><br>
+            <input name="project_tech" placeholder="Tech Stack (e.g., Flask, MongoDB)" rows="1"><br>
+            <textarea name="project_description" placeholder="Project Description (Optional)" rows="3"></textarea>
+        `;
+        section.insertBefore(newEntry, section.querySelector('.add-btn'));
+    }
+
+    function addCertification() {
+        const section = document.getElementById('certifications-section');
+        const newEntry = document.createElement('div');
+        newEntry.classList.add('certification-entry');
+        newEntry.innerHTML = `
+            <hr><br>
+            <input name="certification_title" placeholder="Certification Title (Optional)"><br>
+            <input name="certification_org" placeholder="Issuing Organization (Optional)"><br>
+        `;
+        section.insertBefore(newEntry, section.querySelector('.add-btn'));
+    }
+</script>
 {% endblock %}

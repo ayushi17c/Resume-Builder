@@ -2,34 +2,81 @@
 <html>
 <head>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { font-size: 24px; border-bottom: 1px solid #ccc; }
-        section { margin-bottom: 20px; }
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { font-size: 24px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        h2 { font-size: 20px; color: #1565c0; margin-top: 25px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        p { font-size: 14px; margin: 5px 0; }
+        ul { list-style-type: disc; padding-left: 20px; margin-top: 5px; }
+        li { margin-bottom: 5px; }
+        .contact-info { margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <h1>{{ data.name }}</h1>
-    <p><strong>Email:</strong> {{ data.email }}</p>
-    <p><strong>Phone:</strong> {{ data.phone }}</p>
+    <div class="contact-info">
+        <h1>{{ data.name }}</h1>
+        <p>Email: {{ data.email }} | Phone: {{ data.phone }}</p>
+        <p>
+            {% if data.linkedin %}LinkedIn: {{ data.linkedin }} {% endif %}
+            {% if data.github %}GitHub: {{ data.github }} {% endif %}
+            {% if data.leetcode %}LeetCode: {{ data.leetcode }} {% endif %}
+        </p>
+    </div>
 
-    <section>
+    {% if data.summary %}
+    <div class="section">
         <h2>Professional Summary</h2>
         <p>{{ data.summary }}</p>
-    </section>
+    </div>
+    {% endif %}
 
-    <section>
-        <h2>Skills</h2>
-        <p>{{ data.skills }}</p>
-    </section>
-
-    <section>
-        <h2>Experience</h2>
-        <p>{{ data.experience }}</p>
-    </section>
-
-    <section>
+    {% if data.education.degree %}
+    <div class="section">
         <h2>Education</h2>
-        <p>{{ data.education }}</p>
-    </section>
+        <p><strong>{{ data.education.degree }}</strong> | {{ data.education.university }}</p>
+        <p>Graduated: {{ data.education.graduation_date }}</p>
+    </div>
+    {% endif %}
+
+  {% if data.skills %}
+<div class="section">
+    <h2>Skills</h2>
+    {% for category in data.skills %}
+        {% if category["items"] %}
+        <p><strong>{{ category["category"] }}:</strong> {{ category["items"] | join(', ') }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+
+    {% if data.experience %}
+    <div class="section">
+        <h2>Work Experience</h2>
+        {% for job in data.experience %}
+        <p><strong>{{ job.title }}</strong> at {{ job.company }} | {{ job.dates }}</p>
+        <p>{{ job.description | replace('\n', '<br>') | safe }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.projects %}
+    <div class="section">
+        <h2>Projects</h2>
+        {% for project in data.projects %}
+        <p><strong>{{ project.title }}</strong></p>
+        <p><em>Tech Stack:</em> {{ project.tech }}</p>
+        <p>{{ project.description | replace('\n', '<br>') | safe }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.certifications %}
+    <div class="section">
+        <h2>Certifications</h2>
+        {% for cert in data.certifications %}
+        <p><strong>{{ cert.title }}</strong> | {{ cert.organization }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
 </body>
 </html>

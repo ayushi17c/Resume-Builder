@@ -1,14 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Resume Preview</h2>
-<div>
-    <p><strong>Name:</strong> {{ data.name }}</p>
-    <p><strong>Email:</strong> {{ data.email }}</p>
-    <p><strong>Phone:</strong> {{ data.phone }}</p>
-    <p><strong>Summary:</strong> {{ data.summary }}</p>
-    <p><strong>Skills:</strong> {{ data.skills }}</p>
-    <p><strong>Experience:</strong> {{ data.experience }}</p>
-    <p><strong>Education:</strong> {{ data.education }}</p>
+<div class="resume-container">
+    <div class="header">
+        <h1>{{ data.name }}</h1>
+        <p>{{ data.email }} | {{ data.phone }}</p>
+        <div class="contact-links">
+            {% if data.linkedin %}<a href="{{ data.linkedin }}" target="_blank">LinkedIn</a>{% endif %}
+            {% if data.github %}<a href="{{ data.github }}" target="_blank">GitHub</a>{% endif %}
+            {% if data.leetcode %}<a href="{{ data.leetcode }}" target="_blank">LeetCode</a>{% endif %}
+        </div>
+    </div>
+
+    {% if data.summary %}
+    <div class="section">
+        <h2>Professional Summary</h2>
+        <p>{{ data.summary }}</p>
+    </div>
+    {% endif %}
+
+    {% if data.education.degree %}
+    <div class="section">
+        <h2>Education</h2>
+        <p><strong>{{ data.education.degree }}</strong> | {{ data.education.university }}</p>
+        <p>Graduated: {{ data.education.graduation_date }}</p>
+    </div>
+    {% endif %}
+
+{% if data.skills %}
+<div class="section">
+    <h2>Skills</h2>
+    {% for category in data.skills %}
+        {% if category["items"] %}
+        <p><strong>{{ category["category"] }}:</strong> {{ category["items"] | join(', ') }}</p>
+        {% endif %}
+    {% endfor %}
 </div>
-<a href="{{ url_for('resume_bp.download_resume') }}">Download as PDF</a>
+{% endif %}
+
+    
+    {% if data.experience %}
+    <div class="section">
+        <h2>Work Experience</h2>
+        {% for job in data.experience %}
+        <p><strong>{{ job.title }}</strong> at {{ job.company }} | {{ job.dates }}</p>
+        <p>{{ job.description }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.projects %}
+    <div class="section">
+        <h2>Projects</h2>
+        {% for project in data.projects %}
+        <p><strong>{{ project.title }}</strong></p>
+        <p><em>Tech Stack:</em> {{ project.tech }}</p>
+        <p>{{ project.description }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.certifications %}
+    <div class="section">
+        <h2>Certifications</h2>
+        {% for cert in data.certifications %}
+        <p><strong>{{ cert.title }}</strong> | {{ cert.organization }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<a href="{{ url_for('resume_bp.download_resume') }}" class="download-btn">Download as PDF</a>
 {% endblock %}

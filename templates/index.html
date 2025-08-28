@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to the Smart Resume Builder</h1>
-<p>Use the navigation menu to explore features like Resume Builder, JD Matching, and AI Tools.</p>
+<main class="main-content">
+    <div class="hero-section">
+        <h1>Your Resume, Perfected.</h1>
+        <p>Build a professional resume in minutes and get instant feedback with our AI-powered tools for job descriptions and bullet points.</p>
+        <a href="/signup" class="cta-button">Get Started Now</a>
+    </div>
+
+    <div class="features-card-container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="icon">📝</span>
+                <h3>Effortless Resume Builder</h3>
+                <p>Create and customize your professional resume with a simple and intuitive form.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🤖</span>
+                <h3>AI Bullet Generator</h3>
+                <p>Generate impactful, action-oriented bullet points tailored to your job title.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🎯</span>
+                <h3>JD Matching Score</h3>
+                <p>Get an instant score on how well your resume matches any job description.</p>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}
