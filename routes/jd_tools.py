@@ -1,10 +1,8 @@
-# routes/jd_tools.py
-
 from flask import Blueprint, render_template, request, flash
 from flask_login import current_user, login_required
 from extensions import mongo
 from utils.jd_parser import extract_keywords_from_jd
-from utils.resume_scorer import score_resume_against_jd
+from utils.resume_scorer import score_resume_against_jd, score_resume_semantically
 
 
 

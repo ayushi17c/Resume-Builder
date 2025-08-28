@@ -1,4 +1,3 @@
-# utils/bullet_generator.py
 import google.generativeai as genai
 
 def generate_bullets_from_title(title: str) -> list[str]:
@@ -15,7 +14,7 @@ def generate_bullets_from_title(title: str) -> list[str]:
 
         response = model.generate_content(prompt)
         
-        # Split the response into a list of bullet points, handling potential formatting
+        
         bullets = [bullet.strip() for bullet in response.text.split('\n') if bullet.strip()]
         
         if not bullets:

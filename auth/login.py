@@ -16,7 +16,7 @@ def login():
         user_data = mongo.db.users.find_one({'email': email})
         
         if user_data and bcrypt.checkpw(password, user_data['password']):
-            # --- Email Sending Logic for Login ---
+            
             msg = Message("Login Notification",
                           sender="your_app_email@gmail.com", # Change to your app's email
                           recipients=[email])
@@ -25,7 +25,7 @@ def login():
                 mail.send(msg)
             except Exception as e:
                 print(f"Failed to send login email: {e}")
-            # --- End of Email Sending Logic ---
+            
 
             login_user(User(user_data))
             return redirect(url_for('dash_bp.dashboard'))

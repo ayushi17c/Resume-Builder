@@ -1,6 +1,4 @@
-/* Final, Consolidated styles.css */
 
-/* Reset & base styles */
 *,
 *::before,
 *::after {
@@ -120,7 +118,7 @@ body {
     transform: scaleX(1);
 }
 
-/* Core Layout & Home Page Specifics */
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -208,7 +206,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* Generic .container for other pages (like login, signup) */
+
 .container {
     max-width: 900px;
     margin: 3rem auto;
@@ -220,7 +218,7 @@ body {
     transition: box-shadow 0.3s;
 }
 
-/* Headings */
+
 h1, h2 {
     color: #1a237e;
     text-align: center;
@@ -239,7 +237,7 @@ h2 {
     font-size: 1.7rem;
 }
 
-/* Paragraphs */
+
 p {
     text-align: center;
     color: #555;
@@ -247,7 +245,7 @@ p {
     font-size: 1.08rem;
 }
 
-/* Forms */
+
 form {
     display: flex;
     flex-direction: column;
@@ -280,7 +278,7 @@ label {
     font-size: 1rem;
 }
 
-/* Buttons */
+
 button {
     padding: 0.875rem 0;
     background: linear-gradient(90deg, #1565c0 0%, #0d47a1 100%);
@@ -304,7 +302,7 @@ button:focus {
     transform: translateY(-2px) scale(1.01);
 }
 
-/* Bullet list */
+
 ul {
     margin-top: 1.5rem;
     padding-left: 2.75rem;
@@ -328,7 +326,7 @@ li::before {
     top: 0;
 }
 
-/* Flash messages */
+
 .flashes {
     list-style: none;
     margin: 1.125rem auto;
@@ -347,14 +345,14 @@ li::before {
     box-shadow: 0 2px 8px rgba(21, 101, 192, 0.08);
 }
 
-/* Divider */
+
 hr {
     border: none;
     border-top: 2px solid #e3f2fd;
     margin: 2rem 0;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
     .container {
         max-width: 98vw;
@@ -412,7 +410,7 @@ hr {
     }
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -428,7 +426,7 @@ hr {
     animation: fadeInUp 0.7s cubic-bezier(.77,0,.18,1) both;
 }
 
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
     width: 10px;
     background: #e3f2fd;
@@ -439,18 +437,17 @@ hr {
     border-radius: 8px;
 }
 
-/* Selection highlight */
 ::selection {
     background: #ffd54f44;
 }
 
-/* Utility spacing */
+
 .mt-2 { margin-top: 0.75rem; }
 .mt-3 { margin-top: 1.5rem; }
 .mb-2 { margin-bottom: 0.75rem; }
 .mb-3 { margin-bottom: 1.5rem; }
 
-/* Resume Preview & Final Styles */
+
 .resume-container {
     max-width: 800px;
     margin: 40px auto;
@@ -536,8 +533,8 @@ hr {
 }
 
 .form-container {
-    max-width: 400px; /* A standard, professional width */
-    margin: 50px auto; /* Centers the container and adds vertical spacing */
+    max-width: 400px;
+    margin: 50px auto; 
     padding: 40px;
     background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
@@ -547,5 +544,5 @@ hr {
 .form-container input,
 .form-container button {
     width: 100%;
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    box-sizing: border-box; 
 }

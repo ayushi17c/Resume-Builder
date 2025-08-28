@@ -28,7 +28,7 @@ def signup():
             'created_at': datetime.utcnow()
         })
 
-        # --- Email Sending Logic for Signup ---
+    
         msg = Message("Welcome to Resume Builder!",
                       sender="your_app_email@gmail.com", # Change to your app's email
                       recipients=[email])
@@ -37,7 +37,7 @@ def signup():
             mail.send(msg)
         except Exception as e:
             print(f"Failed to send signup email: {e}")
-        # --- End of Email Sending Logic ---
+        
 
         flash("Signup successful. Please login.")
         return redirect(url_for('login_bp.login'))

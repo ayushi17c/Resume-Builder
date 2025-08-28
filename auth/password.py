@@ -5,7 +5,7 @@ from extensions import mongo, mail
 import bcrypt
 from bson.objectid import ObjectId
 
-# Create a serializer for tokens
+
 s = URLSafeTimedSerializer('ThisIsASecretKey')
 
 password_bp = Blueprint("password_bp", __name__)
