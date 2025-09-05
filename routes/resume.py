@@ -48,30 +48,33 @@ def resume():
                     'title': title,
                     'organization': certification_orgs[i],
                 })
+        
+        # Handle multiple custom links
+        link_names = request.form.getlist('link_name')
+        link_urls = request.form.getlist('link_url')
+        links_list = []
+        for i, name in enumerate(link_names):
+            if name.strip() and link_urls[i].strip():
+                links_list.append({
+                    'name': name.strip(),
+                    'url': link_urls[i].strip()
+                })
 
         # Handle categorized skills
         skills = []
         technical_skills = request.form.get('technical_skills', '')
         soft_skills = request.form.get('soft_skills', '')
-
+        
         if technical_skills:
-         skills.append({'category': 'Technical Skills', 'items': [s.strip() for s in technical_skills.split(',') if s.strip()]})
-        else:
-         skills.append({'category': 'Technical Skills', 'items': []})
-
+            skills.append({'category': 'Technical Skills', 'items': [s.strip() for s in technical_skills.split(',') if s.strip()]})
         if soft_skills:
-         skills.append({'category': 'Soft Skills', 'items': [s.strip() for s in soft_skills.split(',') if s.strip()]})
-        else:
-         skills.append({'category': 'Soft Skills', 'items': []})
+            skills.append({'category': 'Soft Skills', 'items': [s.strip() for s in soft_skills.split(',') if s.strip()]})
         
         resume_data = {
             'user_id': current_user.id,
-            'name': request.form['name'],
-            'email': request.form['email'],
-            'phone': request.form['phone'],
-            'linkedin': request.form.get('linkedin', ''),
-            'github': request.form.get('github', ''),
-            'leetcode': request.form.get('leetcode', ''),
+            'name': request.form.get('name', ''),
+            'email': request.form.get('email', ''),
+            'phone': request.form.get('phone', ''),
             'summary': request.form.get('summary', ''),
             'education': {
                 'degree': request.form.get('degree', ''),
@@ -79,6 +82,7 @@ def resume():
                 'graduation_date': request.form.get('graduation_date', '')
             },
             'skills': skills,
+            'links': links_list,
             'certifications': cert_list,
             'experience': experience_list,
             'projects': project_list,
@@ -90,7 +94,9 @@ def resume():
         flash("Resume saved successfully!")
         return redirect(url_for("resume_bp.preview_resume"))
         
-    return render_template("resume_form.html")
+    else:
+        resume_data = mongo.db.resumes.find_one({"user_id": current_user.id})
+        return render_template("resume_form.html", data=resume_data if resume_data else {})
 
 @resume_bp.route("/resume/preview")
 @login_required
