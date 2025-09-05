@@ -4,9 +4,6 @@ from extensions import mongo
 from utils.jd_parser import extract_keywords_from_jd
 from utils.resume_scorer import score_resume_against_jd, score_resume_semantically
 
-
-
-
 jd_bp = Blueprint("jd_bp", __name__)
 
 @jd_bp.route("/jd-parser", methods=["GET", "POST"])
@@ -19,7 +16,6 @@ def jd_parser():
             keywords = extract_keywords_from_jd(jd_text)
     return render_template("jd_parser.html", keywords=keywords)
 
-
 @jd_bp.route("/resume-score", methods=["GET", "POST"])
 @login_required
 def jd_score():
@@ -27,10 +23,8 @@ def jd_score():
     matched = []
     missed = []
     
-    # Get user's resume data
     resume_data = mongo.db.resumes.find_one({"user_id": current_user.id})
 
-    # Check if a resume exists for the user
     if not resume_data:
         flash("Please create a resume first using the 'Resume Builder' page.")
         return render_template("jd_score.html")
@@ -42,10 +36,8 @@ def jd_score():
             flash("Please paste a job description to score your resume.")
         else:
             try:
-                # Use the AI-based scoring function
                 match_score, matched, missed = score_resume_semantically(resume_data, jd_text)
             except Exception as e:
-                # Catch any errors from the AI service and provide a user-friendly message
                 flash(f"An error occurred while scoring your resume. Please try again later.")
                 print(f"Error during resume scoring: {e}")
                 
